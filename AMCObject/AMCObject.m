@@ -235,11 +235,9 @@ NSString *AMCPropertyClassName(const char *type);
     return obj;
 }
 
-- (NSString *)description
+- (NSString *)debugDescription
 {
-#ifdef DEBUG
-#if AMC_COMPLEMENT_DESCRIPTION
-    NSMutableString *string = [super description].mutableCopy;
+    NSMutableString *string = [self description].mutableCopy;
     NSMutableString *objStr = [NSMutableString string];
     NSDictionary *dic = AMCPropertyListOfObject(self);
     for (id key in dic) {
@@ -250,11 +248,6 @@ NSString *AMCPropertyClassName(const char *type);
     }
     [string insertString:objStr atIndex:[string length] - 1];
     return string;
-#else
-    return [super description];
-#endif
-    return [super description];
-#endif
 }
 
 #pragma mark Encode/Save

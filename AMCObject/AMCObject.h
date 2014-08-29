@@ -32,9 +32,6 @@
 #import <objc/objc-runtime.h>
 #endif
 
-/** Macro of show full info on debug. */
-#define AMC_COMPLEMENT_DESCRIPTION 1
-
 /** Current version of AutoMagicCoding. */
 extern NSString *const AMCVersion; // = @"2.0"
 
@@ -316,6 +313,10 @@ typedef enum
 /** Returns the class name for given key.
  */
 - (NSString *) AMCClassNameWithKey: (NSString *) aKey;
+
+/** Print description while in debug.
+ */
+- (NSString *)debugDescription;
 
 #pragma mark - override by subclass
 
