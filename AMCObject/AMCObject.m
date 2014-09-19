@@ -901,6 +901,12 @@ static NSDictionary *AMCPropertyListOfObject(id object)
         objc_property_t property = properties[i];
         const char *name = property_getName(property);
         NSString *key = [NSString stringWithUTF8String:name];
+        // iOS8 add these...
+        if ([key isEqualToString:@"superclass"] ||
+            [key isEqualToString:@"description"] ||
+            [key isEqualToString:@"debugDescription"]) {
+            continue;
+        }
         const char *attribute = property_getAttributes(property);
         NSString *value = [NSString stringWithUTF8String:attribute];
         [dic setObject:value forKey:key];
@@ -962,6 +968,12 @@ NSArray *AMCKeysForDictionaryRepresentationOfClass(Class cls)
             const char *name = property_getName(curProperty);
             
             NSString *propertyKey = [NSString stringWithCString:name encoding:NSUTF8StringEncoding];
+            // iOS8 add these...
+            if ([propertyKey isEqualToString:@"superclass"] ||
+                [propertyKey isEqualToString:@"description"] ||
+                [propertyKey isEqualToString:@"debugDescription"]) {
+                continue;
+            }
             [array addObject: propertyKey];
         }
         
